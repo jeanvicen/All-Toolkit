@@ -1,0 +1,27 @@
+{
+  "name": "all-toolkit-marketplace",
+  "owner": { "name": "Jean Vicen" },
+  "metadata": {
+    "description": "All Toolkit for Claude Code, with UI UX Pro Max as an upstream dependency.",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "all-toolkit",
+      "source": "./",
+      "description": "Routes tasks to relevant specialist skills; install this to get All Toolkit and UI UX Pro Max.",
+      "version": "1.1.0",
+      "dependencies": ["ui-ux-pro-max"]
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+        "sha": "3a13158ff1f32156cbe144108de48eda2ecaed9a"
+      },
+      "description": "Official UI UX Pro Max plugin by Next Level Builder.",
+      "version": "2.15.0"
+    }
+  ]
+}
