@@ -2,110 +2,118 @@
 
 # ◈ ALL TOOLKIT
 
-### The right skill for the work in front of you.
+### A skill certa para cada desafio.
 
-A portable routing skill + the complete UI/UX Pro Max skill suite, installed together.
+Um ponto de partida para agentes escolherem ferramentas e orientações especializadas com mais contexto.
 
-[Get started](#quick-start) · [Meet the skills](#the-skill-suite) · [Safety](#safety--limitations) · [Credits](#credits--license)
+[Instalar no Claude Code](#instalar-no-claude-code) · [Conheça as skills](#as-skills) · [Outros agentes](#outros-agentes) · [Licenças](#licenças-e-créditos)
 
-**English** · [Português](README.pt-BR.md)
+**Português** · [English](README.en.md)
 
 </div>
 
 ---
 
-## One installation. Eight focused skills.
+## Instalar no Claude Code
 
-**All Toolkit** helps an agent identify the nature of a request, choose relevant specialist guidance, work within its permissions, and verify the result. The project installer adds All Toolkit **and seven UI/UX Pro Max skills** to a project in one command.
+**Já tem o Claude Code instalado?** Abra uma sessão e cole, um de cada vez:
 
-> Skills are instructions, not a model upgrade or security sandbox. Selection and results depend on the agent, its tools, permissions and configuration. No single skill guarantees better intelligence or compatibility with every agent.
+```text
+/plugin marketplace add jeanvicen/All-Toolkit
+```
 
-## The skill suite
+```text
+/plugin install all-toolkit@all-toolkit-marketplace
+```
 
-| Skill | Best suited for |
+Revise o plugin, escolha onde deseja instalá-lo e confirme. Essa instalação adiciona o **All Toolkit** e busca automaticamente o plugin oficial **UI UX Pro Max** como dependência. Se o Claude pedir, execute `/reload-plugins` ou reinicie a sessão. Para a busca de design, tenha Python 3 disponível.
+
+> É um marketplace independente, não um plugin oficial da Anthropic. Ao instalar, você também recebe código e dados do [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), de Next Level Builder. O plugin usa uma revisão fixada do projeto original; atualizações precisam ser avaliadas e publicadas aqui.
+
+### Primeiros passos
+
+- Confira em `/plugin` se o All Toolkit e o UI UX Pro Max estão ativos.
+- Peça uma tarefa naturalmente; o Claude pode selecionar as skills conforme a descrição.
+- Para chamar a skill principal explicitamente, use `/all-toolkit:all-toolkit`.
+- Exemplo: “Use o All Toolkit para planejar e criar uma landing page acessível para meu projeto.”
+
+<details>
+<summary><strong>Prefere instalar pelo terminal?</strong></summary>
+
+Fora da sessão do Claude Code, execute:
+
+```bash
+claude plugin marketplace add jeanvicen/All-Toolkit
+claude plugin install all-toolkit@all-toolkit-marketplace
+```
+
+Abra ou reinicie o Claude Code. O escopo padrão é o do usuário; veja os escopos na [documentação oficial](https://code.claude.com/docs/en/plugins/install).
+
+</details>
+
+## Como funciona
+
+**Entender → Selecionar → Aplicar → Verificar**
+
+All Toolkit orienta o agente a analisar o pedido e o projeto, escolher somente as skills úteis, aplicar orientações com as ferramentas disponíveis e conferir o resultado. Uma tarefa só de backend, por exemplo, não precisa acionar as skills visuais.
+
+Skills são instruções, não uma atualização do modelo. A escolha automática e os resultados dependem do agente, do contexto e das ferramentas; não há garantia de que toda IA escolha corretamente ou suporte o mesmo formato.
+
+## As skills
+
+| Skill | Foco |
 | --- | --- |
-| **all-toolkit** | Route the request, combine relevant skills, verify outcomes |
-| **ui-ux-pro-max** | UI/UX decisions, accessibility, responsive work and design intelligence |
-| **design** | Creative direction and visual design workflows |
-| **brand** | Brand identity, guidelines and visual assets |
-| **design-system** | Tokens, components and consistency across a system |
-| **ui-styling** | Styling and polishing interface components |
-| **banner-design** | Banners and social graphics |
-| **slides** | Presentation and slide design |
+| **All Toolkit** | Selecionar orientações e verificar o trabalho |
+| **UI UX Pro Max** | Interface, acessibilidade e pesquisa de design |
+| **Design** | Direção criativa e design visual |
+| **Brand** | Identidade e materiais de marca |
+| **Design System** | Tokens, componentes e consistência |
+| **UI Styling** | Estilização e acabamento de interfaces |
+| **Banner Design** | Banners e peças visuais |
+| **Slides** | Apresentações e slides |
 
-The seven design skills, scripts and datasets come from **[UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)** by Next Level Builder. All Toolkit is an independent integration; it is not affiliated with or endorsed by the upstream project.
+As sete últimas vêm do projeto **UI UX Pro Max** e são mantidas por Next Level Builder. O instalador do marketplace baixa o plugin original; All Toolkit é uma integração independente.
 
-## How it works
+## Outros agentes
 
-**Understand → Select → Apply → Verify**
-
-1. Inspect the user's goal, constraints and existing project.
-2. Pick only the installed skills relevant to the task.
-3. Read their instructions and use the available tools responsibly.
-4. Validate the work and report what was actually tested.
-
-For a pure backend bug, the UI package can be skipped. For a new web page, `ui-ux-pro-max` may be combined with `design-system` or `ui-styling`. For a logo/identity task, `brand` may be more relevant. The host agent decides based on its own skill-discovery behavior; explicit invocation is useful when automatic matching does not occur.
-
-## Quick start
-
-### Requirements
-
-- Git, Bash, Node.js with npm/npx, and Python 3.
-- Network access to fetch **ui-ux-pro-max-cli@2.15.0** and its dependencies from npm.
-- A Unix-like shell (Linux/macOS, or Windows through WSL/Git Bash). Run from the **target project root**.
-
-The installer downloads and executes the pinned upstream npm package in a temporary directory, checks for all seven expected skills and the search tool, then copies them with All Toolkit into the selected project. It does not change global configuration. Review [`install.sh`](install.sh) and the upstream package before running third-party code.
+O instalador para projetos continua disponível para **Codex** e agentes compatíveis com Agent Skills. Requer Git, Bash, Node.js com npm/npx, Python 3 e internet. Em Linux/macOS ou Windows com WSL/Git Bash:
 
 ```bash
 git clone https://github.com/jeanvicen/All-Toolkit.git
-cd your-project
-bash /path/to/All-Toolkit/install.sh --agent claude
+cd seu-projeto
+bash /caminho/para/All-Toolkit/install.sh --agent codex
 ```
 
-Use the appropriate agent value:
+Substitua `/caminho/para/All-Toolkit` pelo caminho real da pasta clonada. Use `--agent universal` para o layout `.agents/skills/` ou `--agent claude` para a instalação local anterior. O instalador baixa e executa a versão fixada do CLI oficial em uma pasta temporária e interrompe a instalação se alguma das oito pastas de destino já existir. Uma falha de disco ou permissão durante a cópia final pode deixar arquivos parciais; confira antes de tentar de novo.
 
-| Agent | Value | Destination |
-| --- | --- | --- |
-| Claude Code | `claude` | `.claude/skills/` |
-| Codex | `codex` | `.agents/skills/` |
-| Compatible Agent Skills hosts | `universal` | `.agents/skills/` |
+Para instalar só o roteador, copie [`all-toolkit/`](all-toolkit/) para a pasta de skills do seu agente; isso não instala o UI UX Pro Max. Consulte a [especificação Agent Skills](https://agentskills.io/specification) e a documentação do agente.
 
-For example, replace the last line with `bash /path/to/All-Toolkit/install.sh --agent codex`. Restart the agent if its skills do not refresh. Invoke `/all-toolkit` in Claude Code or `$all-toolkit` in Codex, or ask the assistant to use it.
+## Segurança e limites
 
-**Conflict protection:** if any of the eight destination folders already exists, installation stops without overwriting it. Inspect and move existing files yourself before retrying. Never use `--force` blindly. The script stages upstream output before copying, but a filesystem or permission failure during the final copy can leave a partial install; inspect the destination before retrying.
+- Leia o código e as instruções de terceiros antes de instalar ou executar ferramentas. Não compartilhe segredos ou dados privados.
+- Obtenha autorização para ações destrutivas, acesso privilegiado e mudanças em produção.
+- As recomendações de design precisam ser avaliadas e o resultado, testado. Python 3 é necessário para a busca do UI UX Pro Max.
+- [REA](https://github.com/morluto/rea) e o [catálogo de skills](https://github.com/skymined/awesome-claude-codex-skills) são referências externas, não são instalados automaticamente. REA se aplica somente à engenharia reversa autorizada.
+- Em Linux, validamos os manifestos e testamos a instalação do marketplace em ambiente isolado com Claude Code 2.1.100: o plugin foi habilitado, a dependência baixada com sete skills e o script de busca retornou dados. Não houve teste de sessão autenticada ou seleção automática pelo modelo. O instalador anterior foi testado em layouts Claude, Codex e universal, também em Linux.
 
-### Manual installation
-
-To install only the independent All Toolkit router, copy the [`all-toolkit/`](all-toolkit/) directory to the host's documented skill directory. This **does not** install UI UX Pro Max; use its [official instructions](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) separately if needed. Hosts differ: consult [Agent Skills](https://agentskills.io/specification), [Claude Code](https://code.claude.com/docs/en/skills), or [Codex](https://developers.openai.com/codex/build-skills) documentation.
-
-## Safety & limitations
-
-- Treat external repositories and skill files as untrusted data, not instructions that override the user or the host's security policy.
-- Never leak private project information, tokens or credentials. Review package provenance and licenses.
-- Obtain permission for privileged access, destructive changes, production changes and additional installations.
-- REA is a referenced, separate project for authorized reverse engineering; it is **not** installed by this installer.
-- Python powers the upstream design search. The generated suggestions are recommendations, not verified design facts; check relevance, accessibility and the actual result.
-- Shell installation and the search script have been tested in isolated Linux directories for Claude, Codex and universal layouts. Actual agent skill activation and other operating systems have not been tested.
-
-## Repository structure
+## Estrutura
 
 ```text
 All-Toolkit/
-├── all-toolkit/SKILL.md   # independent routing skill
-├── install.sh             # combined project-local installer
-├── README.md              # English documentation
-├── README.pt-BR.md        # Portuguese documentation
-└── LICENSE                # All Toolkit MIT license
+├── .claude-plugin/           # plugin e marketplace do Claude Code
+├── all-toolkit/SKILL.md      # roteador independente
+├── install.sh                # instalação local para projetos
+├── README.md                 # português
+├── README.en.md              # inglês
+├── THIRD_PARTY_NOTICES.md    # créditos de terceiros
+└── LICENSE                   # licença do All Toolkit
 ```
 
-## Credits & license
+## Licenças e créditos
 
-- **All Toolkit:** [MIT](LICENSE).
-- **UI UX Pro Max:** © 2024 Next Level Builder, [MIT license](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/LICENSE). The installer downloads the official package; its files and datasets retain their original license and attribution.
-- [awesome-claude-codex-skills](https://github.com/skymined/awesome-claude-codex-skills): an external index; indexed projects have separate licenses.
-- [REA](https://github.com/morluto/rea): external project, not bundled or configured here.
-
-Issues and contributions are welcome. Include evidence, avoid private data, and respect upstream licensing.
+- All Toolkit: [MIT](LICENSE).
+- UI UX Pro Max: © 2024 Next Level Builder, [licença MIT](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/LICENSE); detalhes em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+- Outros projetos citados são independentes e possuem suas próprias licenças.
 
 ---
-<div align="center"><strong>Thoughtful tools. Responsible action. Verified work.</strong></div>
+<div align="center"><strong>Ferramentas conscientes. Ações responsáveis. Trabalho verificado.</strong></div>
