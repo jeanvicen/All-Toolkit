@@ -1,0 +1,10 @@
+{
+    "name": "all-toolkit",
+  "description": "Route work to relevant specialist skills and verify results.",
+  "version": "1.1.0",
+  "author": { "name": "Jean Vicen" },
+  "license": "MIT",
+  "repository": "https://github.com/jeanvicen/All-Toolkit",
+  "skills": "./all-toolkit/",
+  "dependencies": ["ui-ux-pro-max"]
+}
