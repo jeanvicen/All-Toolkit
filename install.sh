@@ -12,7 +12,7 @@ case "$2" in
   *) usage; exit 2;;
 esac
 for cmd in node npx python3; do command -v "$cmd" >/dev/null 2>&1 || { echo "Missing required command: $cmd" >&2; exit 1; }; done
-[[ -f "$here/all-toolkit/SKILL.md" ]] || { echo 'Cannot find all-toolkit/SKILL.md beside this installer.' >&2; exit 1; }
+[[ -f "$here/all-toolkit/SKILL.md" && -f "$here/THIRD_PARTY_NOTICES.md" ]] || { echo 'Skill or third-party notices not found beside installer.' >&2; exit 1; }
 project="$(pwd -P)"
 # Avoid changing a path redirected elsewhere by a symlink.
 for part in "${root%%/*}" "$root"; do [[ ! -L "$project/$part" ]] || { echo "Refusing symlinked destination: $project/$part" >&2; exit 1; }; done
@@ -27,6 +27,8 @@ printf 'This downloads and executes the official npm package in a temporary dire
 (cd "$stage" && npx --yes "ui-ux-pro-max-cli@$version" init --ai "$platform")
 for name in "${names[@]:1}"; do [[ -f "$stage/$root/$name/SKILL.md" ]] || { echo "Upstream package did not provide $name; nothing copied to project." >&2; exit 1; }; done
 [[ -f "$stage/$root/ui-ux-pro-max/scripts/search.py" ]] || { echo 'Search script missing; nothing copied.' >&2; exit 1; }
+# Place attribution inside each upstream skill so it accompanies copied material.
+for name in "${names[@]:1}"; do cp -- "$here/THIRD_PARTY_NOTICES.md" "$stage/$root/$name/ALL_TOOLKIT_THIRD_PARTY_NOTICES.md"; done
 mkdir -p -- "$project/$root"
 # Do not overwrite if a second process populated a destination during staging.
 for name in "${names[@]}"; do
@@ -35,4 +37,4 @@ done
 cp -R -- "$here/all-toolkit" "$project/$root/all-toolkit"
 for name in "${names[@]:1}"; do cp -R -- "$stage/$root/$name" "$project/$root/$name"; done
 printf '\nInstalled 8 skills in %s/%s. Restart your agent if needed.\n' "$project" "$root"
-printf 'Third-party skills: Next Level Builder, MIT. See https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/LICENSE\n'
+printf 'Third-party skills: Next Level Builder, MIT. See the notices inside each installed skill.\n'
